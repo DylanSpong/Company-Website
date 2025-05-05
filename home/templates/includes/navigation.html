@@ -266,7 +266,6 @@
       </div>
       <div class="d-flex align-items-center justify-content-center">
         {% if request.user.is_authenticated %}
-
         <!-- Show Logout Button if User is Authenticated -->
         <a href="{% url 'logout' %}" class="btn btn-outline-gray-100 me-md-3"><span
             class="fas fa-sign-out-alt me-2"></span> Logout</a>
@@ -277,10 +276,9 @@
           class="rounded-circle profile-avatar" width="40" height="40" alt="User Profile Picture">
         <span>Profile</span>
 
-        {% else %}
+        {% endif %}
         <div class="sign-up-button-container">
-
-
+          
           <form class="position-relative Search-container desktop-search-bar" method=POST
             action="{% url 'pages/search-results'%}">
             {% csrf_token %}
@@ -293,12 +291,12 @@
 
             <div id="suggestions" class="dropdown-content"></div>
           </form>
-          {% endif %}
+          
 
           <!-- The Sign In and Sign Up menu options were appearing in the toolbar while an authenticated user was logged in. The following two blocks now have conditions to remove them when signed in. -->
 
           <!-- Sign In Dropdown for Team/Client when User is Not Logged In -->
-          {% if not user.is_authenticated %}
+          {% if not request.user.is_authenticated %}
           <div class="position-relative sign-up-button-inner-container">
             <button id="frontPagesDropdown" aria-expanded="false" data-bs-toggle="dropdown" type="button"
               class="sign-up-button">
